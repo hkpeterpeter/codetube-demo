@@ -17,7 +17,6 @@
 </head>
 <body>
 
-
   <div class="card text-center col-12 col-lg-6 offset-lg-3" >
     <h4>Demo: Teach coding with voice over</h4>
     <p class="small">
@@ -29,10 +28,9 @@
     <asciinema-player id="player" src="cast/helloc.cast"></asciinema-player>
     <h3 id="basicUsage"></h3>
 
-    <div>Open source at <a href="https://github.com/hkpeterpeter/codetube-demo">GitHub</a></div>
+    <div>Open source at <a href="https://github.com/hkpeterpeter/codetube-demo">GitHub</a> by
+      <a href="https://hkpeterpeter.github.io/">Peter</a></div>
   </div>
-
-
 
 
 
@@ -40,17 +38,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="lib/asciinema-player.js"></script>
-    <script src="lib/easytimer.min.js"></script>
-
-
-
+  <script src="lib/easytimer.min.js"></script>
 
 
 
   <script>
-
-
-
 
 (function() {
 
@@ -105,9 +97,6 @@
       console.log("it's playing");
       console.log("we're at", this.currentTime);
       timer.start( {startValues: {seconds: cursec} });
-
-      //voice_out_msg("start");
-
       $('#basicUsage').html("");
     });
 
@@ -116,33 +105,19 @@
     timer.pause();
 
      $('#basicUsage').html("");
-
-    //voice_out_msg("pause");
   });
 
   timer.addEventListener('secondsUpdated', function (e) {
-       // $('#basicUsage').html(timer.getTimeValues().toString());
-      // var t = timer.getTimeValues().seconds;
 
        var cursec = parseInt(document.getElementById('player').currentTime);
        var msg = loop_check_speech(cursec);
-
-
-       //$('#basicUsage').html( "sec = " + cursec );
-
 
        if ( msg !== "" ) {
          voice_out_msg(msg);
          $('#basicUsage').html(msg );
        }
 
-
-       /*if ( timer.getTimeValues().seconds === 5 ) {
-         voice_out_msg("Include the stdio header library");
-       }*/
   });
-
-
 
 
 })();
