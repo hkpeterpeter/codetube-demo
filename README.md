@@ -10,7 +10,8 @@ Tools:
   - Desktop: Chrome 33+, Firefox 49+, Safari 7+
   - Mobile: not sure how to make it work
 
-Demo: [https://hkpeterpeter.github.io/codetube-demo/](https://hkpeterpeter.github.io/codetube-demo/)
-2nd Demo: [https://hkpeterpeter.github.io/codetube-demo/gcc.html](https://hkpeterpeter.github.io/codetube-demo/gcc.html)
+Demos:
+- [Teach students hello.c](https://hkpeterpeter.github.io/codetube-demo/)
+- [Teach students how to use gcc to compile the source code](https://hkpeterpeter.github.io/codetube-demo/gcc.html)
 
 ![Screenshot](screenshot.png)
