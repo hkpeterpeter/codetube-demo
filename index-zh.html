@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="lib/asciinema-player.css" />
+  <link rel="stylesheet" type="text/css" href="lib/easytimer.css" />
+
+   <meta name="author" content="Peter Chung">
+   <meta property="og:type" content="website" />
+   <meta property="og:title" content="編程（廣東話版）" />
+   <meta property="og:description" content="試用廣東話文字轉語音係咩效果" />
+   <meta property="og:url" content="https://hkpeterpeter.github.io/codetube-demo/" />
+   <meta property="og:site_name" content="編程（廣東話版）" />
+   <meta property="og:image" content="https://hkpeterpeter.github.io/codetube-demo/screenshot.png" />
+
+<title>CodeTube demo</title>
+</head>
+<body>
+
+  <div class="card text-center col-12 col-lg-6 offset-lg-3" >
+    <h4>Demo: Teach coding with voice over</h4>
+    <p class="small">
+      呢個係廣東話版<br>
+      Comments: <a href="mailto:hkpeterpeter@gmail.com">hkpeterpeter@gmail.com</a>
+    </p>
+    <asciinema-player id="player" src="cast/helloc.cast"></asciinema-player>
+    <h3 id="basicUsage"></h3>
+
+    <div>Open source at <a href="https://github.com/hkpeterpeter/codetube-demo">GitHub</a> by
+      <a href="https://hkpeterpeter.github.io/">Peter</a>
+    </div>
+    <div>Next:
+    <a href="gcc.html">How to compile the C source into an executable?</a>
+    <div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="lib/asciinema-player.js"></script>
+  <script src="lib/easytimer.min.js"></script>
+
+
+
+  <script>
+
+(function() {
+
+  var speech_data = [
+    {t: 0, v:"嗱，編程呢就唔係咁黑暗醜惡嘅"},
+    {t: 5, v:"首先要加入一個頭文件，幫我地處理輸入輸出"},
+    {t: 9, v: "下一步，要寫一個主函数"},
+    {t: 13, v: "通常，編程會先寫好框架，再加寫入裹面既代碼"},
+    {t: 19, v: "每個函数都有一個反回值，呢個例子係零"},
+    {t: 30, v: "你睇到啦，呢個係列印函数，字串係用雙引號架"},
+    {t:41, v:"個斜間加個英文字咩來? 佢係代表印下一行咁解"},
+    {t:51, v:"呢個就係最簡單既程序啦！"}
+  ];
+
+  function loop_check_speech(t) {
+    var len = speech_data.length;
+    var i;
+
+    for (i=0; i<len; i++) {
+      if ( t === speech_data[i].t )
+        return speech_data[i].v;
+    }
+
+     return "";
+  }
+
+  var timer = new Timer();
+  timer.stop();
+  var msg = new SpeechSynthesisUtterance();
+  var voices = window.speechSynthesis.getVoices();
+  msg.voice = voices[0];
+   msg.rate = 1;
+   msg.pitch = 1;
+   msg.lang = "zh-HK";
+
+
+
+   function voice_out_msg(text) {
+
+     msg.text = text;
+     msg.onend = function(e) {
+        console.log('Finished in ' + event.elapsedTime + ' seconds.');
+     };
+     speechSynthesis.speak(msg);
+   }
+
+
+
+    document.getElementById('player').addEventListener('play', function(e) {
+
+      var cursec = parseInt(document.getElementById('player').currentTime);
+
+      console.log("it's playing");
+      console.log("we're at", this.currentTime);
+      timer.start( {startValues: {seconds: cursec} });
+      $('#basicUsage').html("");
+    });
+
+  document.getElementById('player').addEventListener('pause', function(e) {
+    console.log("it's paused");
+    timer.pause();
+
+     $('#basicUsage').html("");
+  });
+
+  timer.addEventListener('secondsUpdated', function (e) {
+
+       var cursec = parseInt(document.getElementById('player').currentTime);
+       var msg = loop_check_speech(cursec);
+
+       if ( msg !== "" ) {
+         voice_out_msg(msg);
+         $('#basicUsage').html(msg );
+       }
+
+  });
+
+
+})();
+</script>
+
+
+</body>
+</html>

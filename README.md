@@ -13,5 +13,6 @@ Tools:
 Demos:
 - [Teach students hello.c](https://hkpeterpeter.github.io/codetube-demo/)
 - [Teach students how to use gcc to compile the source code](https://hkpeterpeter.github.io/codetube-demo/gcc.html)
+- [Chinese/Cantonese version](https://hkpeterpeter.github.io/codetube-demo/index-zh.html)
 
 ![Screenshot](screenshot.png)
