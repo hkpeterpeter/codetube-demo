@@ -11,5 +11,6 @@ Tools:
   - Mobile: not sure how to make it work
 
 Demo: [https://hkpeterpeter.github.io/codetube-demo/](https://hkpeterpeter.github.io/codetube-demo/)
+2nd Demo: [https://hkpeterpeter.github.io/codetube-demo/gcc.html](https://hkpeterpeter.github.io/codetube-demo/gcc.html)
 
 ![Screenshot](screenshot.png)
